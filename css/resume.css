@@ -52,8 +52,12 @@ a { color: inherit; }
   border-bottom: 1px solid var(--line);
 }
 
-.toolbar__hint {
+/* Left-hand label. Fills the first slot of the toolbar's space-between so the
+   action buttons stay right-aligned; without it they would collapse leftwards. */
+.toolbar__label {
   font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--ink-muted);
   max-width: 60ch;
 }

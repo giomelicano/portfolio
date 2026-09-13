@@ -147,21 +147,31 @@ Then open the URL it prints (usually `http://localhost:3000`).
 
 ## Making the résumé PDF
 
-1. Open `resume.html` in Chrome
-2. Replace every yellow-highlighted line, and **delete any you can't fill** — a shorter
-   résumé beats a padded one
-3. Click **Print / Save as PDF**
-4. Destination: *Save as PDF*, and turn **off** "Headers and footers"
-5. Save it as `assets/resume.pdf`
+`assets/resume.pdf` already exists — A4, one page, with every contact and project link
+preserved as a clickable annotation. `resume.html` offers it on a **Download PDF** button.
 
-**Page budget:** with both projects and the coursework and activities filled in, it comes to
-**260mm of the 273mm** an A4 page gives you — about 13mm spare. It fits. If you add much more
-and it spills, let it run to two pages rather than deleting real work: one page is the
-convention for students, but two is perfectly defensible once you have two substantial
+**Regenerate it after any edit to `resume.html`.** The PDF is a snapshot, not a live view:
+
+```bash
+& "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --disable-gpu --no-pdf-header-footer --print-to-pdf="C:\portfolio\assets\resume.pdf" "file:///C:/portfolio/resume.html"
+```
+
+This is the same engine as Chrome's print dialog, with "Headers and footers" already off —
+which is the setting most easily missed by hand, and it stamps the date and file path across
+the page when left on.
+
+Doing it through the dialog instead: **Ctrl+P**, then change **Destination** from your printer
+to *Save as PDF* — it's a dropdown, not a button, which is easy to miss — then turn off
+**Headers and footers** under *More settings*, and save to `assets/resume.pdf`.
+
+**Page budget:** the generated PDF measures **one page** at A4 (209.9 × 297.0 mm). Earlier
+drafts sat at roughly 260mm of the 273mm of usable height, so there is little headroom. If you
+add much more and it spills, let it run to two pages rather than deleting real work: one page
+is the convention for students, but two is perfectly defensible once you have two substantial
 projects on it.
 
-Optionally point the hero button straight at the PDF — in `index.html`, change
-`href="resume.html"` to `href="assets/resume.pdf" download` on the Résumé button.
+Nothing on the résumé page is addressed to you any more — it is linked from the portfolio nav
+and hero, so a recruiter reads whatever is on it. Keep author notes out of it.
 
 ---
 
