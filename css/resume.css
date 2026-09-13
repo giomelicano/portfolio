@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Résumé — screen styles plus a print stylesheet that produces a clean,
+   one-page PDF via the browser's "Save as PDF".
+   Shares the token names used by style.css so the two stay consistent.
+   ========================================================================== */
+
+:root {
+  --ink:        #1a1a1a;
+  --ink-muted:  #5c5c5c;
+  --ink-faint:  #6e6e6e;   /* 5.1:1 on white — #8a8a8a only reached 3.45:1 */
+  --line:       #d8d8d8;
+  --paper:      #ffffff;
+  --page-bg:    #ececed;
+  --font: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+}
+
+* , *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 10.5pt;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Screen-only toolbar
+   -------------------------------------------------------------------------- */
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem clamp(1rem, 4vw, 2rem);
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+}
+
+.toolbar__hint {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  max-width: 60ch;
+}
+
+.toolbar__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: #222;
+  color: #fff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn--ghost:hover { border-color: var(--ink); }
+.btn svg { width: 14px; height: 14px; }
+
+/* --------------------------------------------------------------------------
+   The sheet
+   -------------------------------------------------------------------------- */
+
+.sheet {
+  width: 210mm;
+  min-height: 297mm;
+  max-width: 100%;
+  margin: clamp(1rem, 4vw, 2.5rem) auto;
+  padding: 14mm 15mm;
+  background: var(--paper);
+  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Header */
+
+.r-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-bottom: 3mm;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.r-name {
+  margin: 0;
+  font-size: 21pt;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.r-role {
+  margin: 1mm 0 0;
+  font-size: 10pt;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+}
+
+.r-contact {
+  display: grid;
+  gap: 0.2mm;
+  font-size: 8.6pt;
+  line-height: 1.3;
+  text-align: right;
+  color: var(--ink-muted);
+}
+.r-contact a { text-decoration: none; }
+.r-contact a:hover { text-decoration: underline; }
+
+/* Sections */
+
+.r-section { margin-top: 4.5mm; }
+
+.r-section > h2 {
+  margin: 0 0 1.8mm;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-bottom: 1.2mm;
+  border-bottom: 1px solid var(--line);
+}
+
+.r-summary { margin: 0; font-size: 9.6pt; line-height: 1.42; }
+
+/* An entry: title row + optional meta + bullets */
+
+.r-entry + .r-entry { margin-top: 3mm; }
+
+.r-entry__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+}
+
+.r-entry__title {
+  margin: 0;
+  font-size: 11pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.r-entry__when {
+  font-size: 8.8pt;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.r-entry__sub {
+  margin: 0.4mm 0 1.5mm;
+  font-size: 9.2pt;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.r-bullets { margin: 0; padding-left: 4.5mm; }
+.r-bullets li { margin-bottom: 0.6mm; font-size: 9.3pt; line-height: 1.4; }
+.r-bullets li::marker { color: var(--ink-faint); }
+
+/* Skills grid */
+
+.r-skills { display: grid; gap: 1.8mm; }
+
+.r-skill {
+  display: grid;
+  grid-template-columns: 34mm 1fr;
+  gap: 3mm;
+  align-items: baseline;
+}
+.r-skill dt {
+  font-size: 9pt;
+  font-weight: 700;
+}
+.r-skill dd {
+  margin: 0;
+  font-size: 9.5pt;
+  color: var(--ink-muted);
+}
+
+/* A visible marker for text that still needs replacing */
+.todo {
+  background: #fff3cd;
+  border-bottom: 1px dashed #b8860b;
+  padding: 0 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Print
+   -------------------------------------------------------------------------- */
+
+@page {
+  size: A4;
+  margin: 12mm 13mm;
+}
+
+@media print {
+  body { background: #fff; font-size: 10pt; }
+
+  .toolbar, .no-print { display: none !important; }
+
+  .sheet {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  /* Keep entries from splitting across the page break */
+  .r-entry, .r-section { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Highlighting doesn't belong in a printed résumé, but keep it readable
+     if it hasn't been replaced yet */
+  .todo { background: transparent; border-bottom: 1px dashed #999; }
+
+  a { text-decoration: none; color: inherit; }
+}
+
+@media (max-width: 640px) {
+  .sheet { padding: 8mm 6mm; }
+  .r-contact { text-align: left; }
+  .r-skill { grid-template-columns: 1fr; gap: 0.5mm; }
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>GWA Calculator &amp; Honours Tracker</title>
+<meta name="description" content="Work out your general weighted average against DepEd grading rules, see your honours standing, and find out exactly what you need in your remaining grades to reach a target.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="GWA Calculator & Honours Tracker">
+<meta property="og:description" content="Compute your general average, check your honours standing, and find out what you need in your remaining grades.">
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23222'/><text x='50' y='70' font-family='Helvetica,Arial,sans-serif' font-size='52' font-weight='bold' fill='%23fff' text-anchor='middle'>GW</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
+<!-- Root-relative on purpose. A server that serves this page at /gwa (no
+     trailing slash) would resolve a relative "css/app.css" to /css/app.css
+     and 404. These paths work either way. If you ever move this app to its
+     own site root, drop the /gwa prefix from here and the script tag. -->
+<link rel="stylesheet" href="/gwa/css/app.css">
+
+<script>
+  (function () {
+    document.documentElement.classList.add("js");
+    try {
+      var saved = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (saved === "dark" || (!saved && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="app-header">
+  <div class="wrap app-header__inner">
+    <div class="app-title">
+      <h1>GWA Calculator</h1>
+      <p>General average &amp; honours standing, DepEd grading rules</p>
+    </div>
+
+    <div class="app-header__actions">
+      <div class="seg" role="group" aria-label="Number of grading periods">
+        <button type="button" class="seg__btn" data-terms="3">3 terms</button>
+        <button type="button" class="seg__btn is-active" data-terms="4">4 quarters</button>
+      </div>
+
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+
+      <a class="btn btn--ghost btn--sm" href="/">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Portfolio
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap app-main">
+
+  <!-- ================= Subjects ================= -->
+  <section class="card" aria-labelledby="subjects-heading">
+    <div class="card__head">
+      <div>
+        <h2 id="subjects-heading">Your subjects</h2>
+        <p class="card__sub">Leave a box empty for a grade you haven't got yet — the planner uses those.</p>
+      </div>
+      <p class="saved" id="saved-note" role="status" aria-live="polite"></p>
+    </div>
+
+    <!-- Column headers (desktop only; each input carries its own label on mobile) -->
+    <div class="row row--head" id="grid-head" aria-hidden="true">
+      <span>Subject</span>
+      <div class="row__grades" id="head-terms"></div>
+      <span class="row__final">Final</span>
+      <span></span>
+    </div>
+
+    <div id="subject-list"></div>
+
+    <div class="card__foot">
+      <button class="btn btn--primary btn--sm" id="add-subject" type="button">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Add subject
+      </button>
+      <button class="btn btn--ghost btn--sm" id="reset" type="button">Reset</button>
+      <button class="btn btn--ghost btn--sm" id="clear-grades" type="button">Clear grades only</button>
+    </div>
+  </section>
+
+  <!-- ================= Results ================= -->
+  <aside class="results">
+
+    <section class="card card--summary" aria-labelledby="summary-heading">
+      <h2 id="summary-heading" class="visually-hidden">Your standing</h2>
+
+      <p class="gauge__label">General average</p>
+      <p class="gauge" id="general-average">—</p>
+      <p class="gauge__note" id="ga-note">Enter a grade to begin</p>
+
+      <p class="award" id="award">—</p>
+
+      <ul class="criteria" id="criteria"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="planner-heading">
+      <h2 id="planner-heading">What do I need?</h2>
+      <p class="card__sub">Pick a target and I'll work out the lowest grade you'd need in every box you've left empty.</p>
+
+      <div class="field">
+        <label for="target">Target</label>
+        <select id="target">
+          <option value="75">75 — Passing</option>
+          <option value="90" selected>90 — With Honors</option>
+          <option value="95">95 — With High Honors</option>
+          <option value="98">98 — With Highest Honors</option>
+          <option value="custom">Custom…</option>
+        </select>
+      </div>
+
+      <div class="field" id="custom-field" hidden>
+        <label for="custom-target">Custom target average</label>
+        <input type="number" id="custom-target" min="60" max="100" step="0.01" value="88">
+      </div>
+
+      <p class="verdict" id="verdict">—</p>
+
+      <dl class="mini-stats" id="mini-stats"></dl>
+    </section>
+
+    <section class="card card--method">
+      <details>
+        <summary>How this is worked out</summary>
+        <ul>
+          <li>A subject's <strong>final grade</strong> is the mean of its grading periods, rounded to a whole number. While periods are still blank, the figure shown is a running average of what you've entered.</li>
+          <li>The <strong>general average</strong> is the mean of those rounded subject finals, shown to two decimals.</li>
+          <li><strong>Passing</strong> is 75. Honours bands are 90–94, 95–97 and 98–100, and every subject must also be at least 85.</li>
+          <li>The planner doesn't use algebra — it tries every whole grade from 0 to 100, recalculates the whole thing each time, and reports the lowest one that actually reaches your target. That way the rounding is handled exactly rather than approximately.</li>
+        </ul>
+        <p class="method-note">
+          Thresholds live in one place at the top of <code>js/app.js</code>. Check them against your
+          school's current guidelines before relying on this for anything that matters.
+        </p>
+      </details>
+    </section>
+
+  </aside>
+</main>
+
+<footer class="app-footer">
+  <div class="wrap">
+    <p>Built with plain HTML, CSS and JavaScript — no libraries. Your grades are saved in this browser only and never leave your device.</p>
+  </div>
+</footer>
+
+<script src="/gwa/js/app.js"></script>
+</body>
+</html>

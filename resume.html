@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Résumé — Jose Gio L. Melicano</title>
+<meta name="description" content="Résumé of Jose Gio L. Melicano, BS Information Systems student at Kolehiyo ng Lungsod ng Dasmariñas.">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23222'/><text x='50' y='68' font-family='Helvetica,Arial,sans-serif' font-size='46' font-weight='bold' fill='%23fff' text-anchor='middle'>JM</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap">
+<link rel="stylesheet" href="css/resume.css">
+</head>
+
+<body>
+
+<!-- Screen-only controls; hidden by the print stylesheet -->
+<div class="toolbar">
+  <p class="toolbar__hint">
+    <strong>To make your PDF:</strong> click Print, then choose
+    <em>Save as PDF</em> as the destination and turn off "Headers and footers".
+    Save it as <code>assets/resume.pdf</code>.
+  </p>
+  <div class="toolbar__actions">
+    <a class="btn btn--ghost" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to portfolio
+    </a>
+    <button class="btn" type="button" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+      Print / Save as PDF
+    </button>
+  </div>
+</div>
+
+<main class="sheet">
+
+  <!-- ===== Header ===================================================== -->
+  <header class="r-head">
+    <div>
+      <h1 class="r-name">Jose Gio L. Melicano</h1>
+      <p class="r-role">Web Developer · BS Information Systems Student</p>
+    </div>
+    <div class="r-contact">
+      <span>Dasmariñas, Cavite, Philippines</span>
+      <a href="mailto:giomelicano16@gmail.com">giomelicano16@gmail.com</a>
+      <a href="https://github.com/giomelicano">github.com/giomelicano</a>
+      <a href="https://www.linkedin.com/in/gio-melicano-8855543a7/">linkedin.com/in/gio-melicano-8855543a7/</a>
+      <a href="https://giomelicano-portfolio.netlify.app">giomelicano-portfolio.netlify.app</a>
+    </div>
+  </header>
+
+  <!-- ===== Summary ==================================================== -->
+  <section class="r-section">
+    <h2>Summary</h2>
+    <p class="r-summary">
+      Fourth-year BS Information Systems student graduating June 2027, seeking a web development
+      internship or OJT placement. I build sites end to end — responsive front ends in HTML, CSS
+      and JavaScript, and the PHP and MySQL behind them. Most recently a school management system
+      with three role-based portals, a grade approval workflow and an analytics dashboard, on a
+      MySQL schema I designed myself.
+    </p>
+  </section>
+
+  <!-- ===== Education ================================================== -->
+  <section class="r-section">
+    <h2>Education</h2>
+    <div class="r-entry">
+      <div class="r-entry__top">
+        <h3 class="r-entry__title">Bachelor of Science in Information Systems</h3>
+        <span class="r-entry__when">Expected June 2027</span>
+      </div>
+      <p class="r-entry__sub">Kolehiyo ng Lungsod ng Dasmariñas — Dasmariñas, Cavite</p>
+      <ul class="r-bullets">
+        <li>
+          Relevant coursework: Web Systems &amp; Technologies · Information Management ·
+          Systems Analysis &amp; Design · Data Structures &amp; Algorithms ·
+          Object-Oriented Programming · Quantitative Methods
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Technical skills =========================================== -->
+  <section class="r-section">
+    <h2>Technical Skills</h2>
+    <dl class="r-skills">
+      <div class="r-skill">
+        <dt>Frontend</dt>
+        <dd>HTML5, CSS3, JavaScript (ES6+), responsive design, Flexbox &amp; Grid, DOM manipulation</dd>
+      </div>
+      <div class="r-skill">
+        <dt>Backend &amp; data</dt>
+        <dd>PHP, session-based authentication, CRUD; MySQL, SQL, schema design, phpMyAdmin</dd>
+      </div>
+      <div class="r-skill">
+        <dt>Analysis &amp; tools</dt>
+        <dd>Python (pandas, matplotlib), data cleaning; Git, GitHub, VS Code, XAMPP, Netlify</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ===== Projects =================================================== -->
+  <section class="r-section">
+    <h2>Projects</h2>
+
+    <div class="r-entry">
+      <div class="r-entry__top">
+        <h3 class="r-entry__title">Dasmariñas North NHS — Website &amp; School Portal</h3>
+        <span class="r-entry__when">January 2026 – October 2026</span>
+      </div>
+      <p class="r-entry__sub">Full-stack — HTML, CSS, JavaScript, PHP, MySQL · <a href="https://dnnhs-portal.free.nf/">dnnhs-portal.free.nf</a></p>
+      <ul class="r-bullets">
+        <li>Built three role-based portals — student, teacher and administrator — behind a single PHP session login, each with its own permissions, dashboard, text-size control and dark mode.</li>
+        <li>Implemented a grade approval workflow moving marks from teacher submission through adviser review to publication, tracking the state of every class across 100 classes.</li>
+        <li>Designed the MySQL schema for multi-year records, with archiving, activity logs and a one-click <code>.sql</code> export for backups.</li>
+        <li>Built an analytics dashboard reporting school-wide averages, passing rate, grade distribution and per-subject and per-section rankings for 217 learners and 50 teachers.</li>
+        <li>Implemented DepEd grading rules — per-term grades, the 75 passing line, honours thresholds and the Observed Values behaviour rubric.</li>
+      </ul>
+    </div>
+
+    <div class="r-entry">
+      <div class="r-entry__top">
+        <h3 class="r-entry__title">GWA Calculator &amp; Honours Tracker</h3>
+        <span class="r-entry__when">2026</span>
+      </div>
+      <p class="r-entry__sub">Solo — HTML, CSS, vanilla JavaScript (no libraries)</p>
+      <ul class="r-bullets">
+        <li>Built a browser tool computing general averages under DepEd rounding rules, reporting honours standing against every criterion, and persisting to <code>localStorage</code>.</li>
+        <li>Implemented a reverse planner giving the minimum grade needed across all remaining grading periods to reach a target average.</li>
+        <li>Solved it by exhaustive search rather than algebra — finals round before averaging, making the result a step function that closed-form solutions get wrong at the boundaries. Verified against 400 randomly generated grade sets.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Activities ================================================= -->
+  <section class="r-section">
+    <h2>Activities &amp; Other</h2>
+    <ul class="r-bullets">
+      <li>
+        freeCodeCamp certifications: Responsive Web Design ·
+        JavaScript Algorithms and Data Structures — 2026
+      </li>
+      <li>Languages: Filipino (native) · English (professional working proficiency)</li>
+    </ul>
+  </section>
+
+  <p class="no-print" style="margin-top:8mm;font-size:8.5pt;color:#8a6d00;background:#fff3cd;padding:3mm 4mm;border-radius:4px">
+    <strong>Before you send this anywhere:</strong> replace every highlighted line, then delete any
+    you couldn't fill rather than leaving them vague. Read the summary out loud — if there's a
+    sentence you couldn't defend in an interview, cut it. This box doesn't appear in the PDF.
+  </p>
+
+</main>
+
+</body>
+</html>

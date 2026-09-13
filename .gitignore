@@ -1,0 +1,29 @@
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local-only Claude Code settings (contains machine-specific paths, not part of the site)
+.claude/settings.local.json
+
+# Netlify
+.netlify/
+
+# Node (only if you ever run `npx serve` and it leaves anything behind)
+node_modules/
+npm-debug.log*
+
+# Original full-size screenshots (2880px PNGs, ~6.7MB total).
+# The site references the optimised -lg.jpg / -sm.jpg versions instead.
+# Kept locally as the source of truth; excluded so the repo and deploy stay small.
+assets/img/[0-9][0-9]-*.png
+
+# Personal working notes, not part of the site
+LINKEDIN.md
+JOBSTREET.md

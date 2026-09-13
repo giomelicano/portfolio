@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Jose Gio L. Melicano — Web Developer & IS Student</title>
+<meta name="description" content="Jose Gio L. Melicano — 4th-year BS Information Systems student at Kolehiyo ng Lungsod ng Dasmariñas. Full-stack school website and portal built with HTML, CSS, JavaScript, PHP and MySQL. Open to internships and entry-level roles.">
+<meta name="author" content="Jose Gio L. Melicano">
+
+<!-- ===== Link preview (Open Graph / Twitter) =============================
+     TODO: replace the og:url and og:image URLs with your live Netlify URL
+     once the site is deployed, e.g. https://josegio.netlify.app
+     ====================================================================== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jose Gio L. Melicano — Web Developer & IS Student">
+<meta property="og:description" content="4th-year BS Information Systems student. Full-stack school website and portal in HTML, CSS, JavaScript, PHP and MySQL. Open to internships.">
+<meta property="og:url" content="https://giomelicano-portfolio.netlify.app/">
+<meta property="og:image" content="https://giomelicano-portfolio.netlify.app/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jose Gio L. Melicano — Web Developer & IS Student">
+<meta name="twitter:description" content="4th-year BS Information Systems student. Full-stack school website and portal in HTML, CSS, JavaScript, PHP and MySQL.">
+<meta name="twitter:image" content="https://giomelicano-portfolio.netlify.app/assets/img/og-image.png">
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+<!-- Favicon: a simple monogram, no extra file needed -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23222'/><text x='50' y='68' font-family='Helvetica,Arial,sans-serif' font-size='46' font-weight='bold' fill='%23fff' text-anchor='middle'>JM</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Apply the saved theme before first paint so there is no flash of the
+     wrong colour scheme. Kept inline and tiny on purpose. -->
+<script>
+  (function () {
+    /* Tells the stylesheet JavaScript is available. The scroll-reveal effect
+       is scoped to .js so a no-JS visitor sees the full page, not a blank one. */
+    document.documentElement.classList.add("js");
+    try {
+      var saved = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (saved === "dark" || (!saved && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) { /* private mode — fall back to the light default */ }
+  })();
+</script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ======================================================================
+     Header
+     ====================================================================== -->
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Primary">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">JM</span>
+      <span>Jose&nbsp;Gio</span>
+    </a>
+
+    <ul class="nav__links" id="nav-links">
+      <li><a class="nav__link" href="#about">About</a></li>
+      <li><a class="nav__link" href="#skills">Skills</a></li>
+      <li><a class="nav__link" href="#work">Work</a></li>
+      <li><a class="nav__link" href="#contact">Contact</a></li>
+      <li><a class="nav__link" href="resume.html">Résumé</a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <button class="theme-toggle" id="theme-toggle" type="button"
+              aria-label="Switch colour theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+
+      <a class="btn btn--primary btn--sm nav__cta" href="#contact">
+        Let's talk
+        <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+
+      <button class="nav__toggle" id="nav-toggle" type="button"
+              aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ======================================================================
+     Hero
+     ====================================================================== -->
+<section class="hero" id="top">
+  <div class="hero__watermark" aria-hidden="true">PORTFOLIO</div>
+
+  <div class="wrap">
+    <div class="hero__inner">
+
+      <div class="hero__side" aria-hidden="true">
+        <span>Web Developer</span>
+        <span>Dasmariñas, PH</span>
+      </div>
+
+      <div class="hero__content">
+        <p class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Open to internships &amp; OJT
+        </p>
+
+        <!-- Honest figures. No invented metrics. -->
+        <div class="hero__stats">
+          <div>
+            <span class="hero__stat-num">4th Yr</span>
+            <span class="hero__stat-label">BS Information Systems</span>
+          </div>
+          <div>
+            <span class="hero__stat-num">2027</span>
+            <span class="hero__stat-label">Expected graduation</span>
+          </div>
+        </div>
+
+        <h1 class="hero__title">Hello</h1>
+
+        <p class="hero__subtitle">
+          <span>I'm <strong>Jose Gio Melicano</strong> — an Information Systems student who builds
+          websites end to end, from the layout in the browser down to the MySQL tables behind it.</span>
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#work">
+            View my work
+            <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="resume.html">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Résumé
+          </a>
+        </div>
+
+        <ul class="hero__socials">
+          <li>
+            <a class="social-link" href="https://github.com/giomelicano" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="social-link" href="https://www.linkedin.com/in/gio-melicano-8855543a7/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.64h.05a4.17 4.17 0 0 1 3.75-2.06C20.4 8.58 21 10.9 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="social-link" href="mailto:giomelicano16@gmail.com" aria-label="Email Jose Gio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero__portrait">
+        <!-- width/height are the file's real pixel size: they reserve the space
+             before the image loads, so the layout doesn't jump. -->
+        <img src="assets/img/profile.jpg" width="768" height="1344"
+             fetchpriority="high"
+             alt="Jose Gio L. Melicano">
+      </div>
+
+    </div>
+
+    <p class="hero__scroll">
+      Scroll down
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ======================================================================
+     About
+     ====================================================================== -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about__grid">
+      <div class="reveal">
+        <p class="eyebrow">About me</p>
+        <h2 class="section-title">Building things<br>for the web.</h2>
+        <p class="section-intro">
+          I'm a fourth-year BS Information Systems student at Kolehiyo ng Lungsod ng Dasmariñas,
+          graduating in June 2027. Most of what I know came from building things and breaking them —
+          starting with HTML and CSS, then JavaScript, and eventually the PHP and MySQL side when a
+          static page stopped being enough for what I wanted to make.
+        </p>
+        <p class="section-intro" style="margin-top:1.15rem">
+          Most recently that meant building a school management system for Dasmariñas North
+          National High School — three role-based portals, a grade approval workflow, and an
+          analytics dashboard, on top of a MySQL database I designed myself.
+        </p>
+        <p class="section-intro" style="margin-top:1.15rem">
+          I'm looking for an internship or OJT placement where I can work on real projects with
+          people who know more than I do. I'm comfortable being the one who asks questions, and
+          I'd rather be given something slightly beyond me than something safe.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="facts">
+          <div class="fact">
+            <span class="fact__key">Education</span>
+            <span class="fact__val">BS Information Systems<br>Kolehiyo ng Lungsod ng Dasmariñas</span>
+          </div>
+          <div class="fact">
+            <span class="fact__key">Graduating</span>
+            <span class="fact__val">June 2027</span>
+          </div>
+          <div class="fact">
+            <span class="fact__key">Location</span>
+            <span class="fact__val">Dasmariñas, Cavite, Philippines</span>
+          </div>
+          <div class="fact">
+            <span class="fact__key">Work setup</span>
+            <span class="fact__val">Remote, onsite or hybrid</span>
+          </div>
+          <div class="fact">
+            <span class="fact__key">Looking for</span>
+            <span class="fact__val">Web development · IT internship · OJT</span>
+          </div>
+          <div class="fact">
+            <span class="fact__key">Email</span>
+            <span class="fact__val"><a href="mailto:giomelicano16@gmail.com">giomelicano16@gmail.com</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     Skills
+     ====================================================================== -->
+<section class="section section--alt" id="skills">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">What I work with</p>
+      <h2 class="section-title">Skills</h2>
+      <p class="section-intro" style="margin-bottom:clamp(2rem,5vw,3.5rem)">
+        Listed without percentage bars, because a number next to a language doesn't mean anything.
+        These are the things I've actually built with and can talk through.
+      </p>
+    </div>
+
+    <div class="skills__list">
+
+      <article class="skill-row reveal">
+        <span class="skill-row__num">01</span>
+        <div class="skill-row__body">
+          <h3 class="skill-row__title">Frontend</h3>
+          <p class="skill-row__desc">
+            Hand-written HTML and CSS, mobile-first layouts, and vanilla JavaScript for
+            interactivity. This site is the example — no framework, no build step.
+          </p>
+        </div>
+        <ul class="tags">
+          <li class="tag">HTML5</li>
+          <li class="tag">CSS3</li>
+          <li class="tag">JavaScript (ES6+)</li>
+          <li class="tag">Responsive design</li>
+          <li class="tag">Flexbox &amp; Grid</li>
+          <li class="tag">DOM manipulation</li>
+        </ul>
+      </article>
+
+      <article class="skill-row reveal">
+        <span class="skill-row__num">02</span>
+        <div class="skill-row__body">
+          <h3 class="skill-row__title">Backend &amp; Database</h3>
+          <p class="skill-row__desc">
+            Server-side PHP with MySQL behind it — designing the tables, writing the queries,
+            and handling login sessions and CRUD for an admin panel.
+          </p>
+        </div>
+        <ul class="tags">
+          <li class="tag">PHP</li>
+          <li class="tag">MySQL</li>
+          <li class="tag">phpMyAdmin</li>
+          <li class="tag">XAMPP</li>
+          <li class="tag">CRUD operations</li>
+          <li class="tag">Session authentication</li>
+        </ul>
+      </article>
+
+      <article class="skill-row reveal">
+        <span class="skill-row__num">03</span>
+        <div class="skill-row__body">
+          <h3 class="skill-row__title">Data &amp; Analysis</h3>
+          <p class="skill-row__desc">
+            Querying data with SQL and working with it in Python — loading a dataset,
+            cleaning it up, and charting what's in it.
+          </p>
+        </div>
+        <ul class="tags">
+          <li class="tag">SQL</li>
+          <li class="tag">Python</li>
+          <li class="tag">pandas</li>
+          <li class="tag">matplotlib</li>
+          <li class="tag">Data cleaning</li>
+        </ul>
+      </article>
+
+      <article class="skill-row reveal">
+        <span class="skill-row__num">04</span>
+        <div class="skill-row__body">
+          <h3 class="skill-row__title">Tools &amp; Workflow</h3>
+          <p class="skill-row__desc">
+            Version control, a local dev environment, and the browser tools I use to figure
+            out why something isn't doing what I told it to.
+          </p>
+        </div>
+        <ul class="tags">
+          <li class="tag">Git</li>
+          <li class="tag">GitHub</li>
+          <li class="tag">VS Code</li>
+          <li class="tag">Chrome DevTools</li>
+          <li class="tag">Netlify</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     Work — one project, told properly
+     ====================================================================== -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-intro" style="margin-bottom:clamp(2rem,5vw,3.5rem)">
+        In full detail — what each one needed to do, what I built, and what went wrong
+        along the way.
+      </p>
+    </div>
+
+    <article class="case reveal">
+
+      <div class="case__cover">
+        <img src="assets/img/01-homepage-hero-lg.jpg" width="1600" height="1000"
+             loading="lazy" decoding="async"
+             alt="Dasmariñas North National High School home page, showing the school crest over a photo of the campus with enrolment, campus and class-shift information cards">
+      </div>
+
+      <div class="case__body">
+
+        <div class="case__head">
+          <div>
+            <p class="case__num">01 — School management system</p>
+            <h3 class="case__title">Dasmariñas North NHS<br>Website &amp; Portal</h3>
+            <p class="case__role">Full-stack — frontend, database design and authentication</p>
+          </div>
+          <div class="case__links">
+            <a class="btn btn--ghost btn--sm" href="https://dnnhs-portal.free.nf/" target="_blank" rel="noopener noreferrer">
+              Live site
+              <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <!--
+              Source-code button removed: github.com/giomelicano/dnnhs-website does not exist yet,
+              and a 404 in front of a recruiter is worse than no link at all. Once the DNNHS code
+              is pushed, restore this block and point href at the real repo.
+
+            <a class="btn btn--ghost btn--sm" href="https://github.com/giomelicano/dnnhs-website" target="_blank" rel="noopener noreferrer">
+              Source code
+              <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            -->
+          </div>
+        </div>
+
+        <div class="case__cols">
+          <div class="case__block">
+            <h4>The problem</h4>
+            <p>
+              The school needed two things from one system. Outside the login: a public site that
+              worked on a phone, carrying enrolment dates, campus information and class shifts.
+              Inside it: a way to move a grade from a teacher's class record, through the adviser
+              who has to confirm it, and out to the student — with someone able to see, at any
+              point, which of the school's hundred classes had actually handed anything in.
+            </p>
+          </div>
+
+          <div class="case__block">
+            <h4>What I built</h4>
+            <ul class="built-list">
+              <li><strong>Three role-based portals</strong> — student, teacher and administrator, each with its own navigation, permissions and dashboard, behind one PHP session login.</li>
+              <li><strong>A grade approval workflow</strong> — teachers upload marks per term, advisers confirm them, and students only see a grade once it's published. Every class carries its state: not submitted, awaiting review, returned, or published.</li>
+              <li><strong>DepEd-accurate grading</strong> — three terms per subject with computed finals against the 75 passing line, honours tracked toward 90, and the Observed Values rubric (Maka-Diyos, Makatao, Makakalikasan, Makabansa) recorded per term.</li>
+              <li><strong>An analytics dashboard</strong> — school-wide average and passing rate, grade distribution across five bands, per-subject and per-section rankings with failing counts, and submission progress over a rolling 14 days.</li>
+              <li><strong>Multi-year records and admin tooling</strong> — data filed by school year with archives, activity logs, and a one-click <code>.sql</code> export so the database can be backed up and restored through phpMyAdmin.</li>
+              <li><strong>Accessibility in every portal</strong> — a three-step text-size control and a dark mode, available to students, teachers and admins alike rather than just on the public site.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="case__block" style="margin-bottom:2rem">
+          <h4>What was hard</h4>
+          <!-- ==================================================================
+               VERIFY THIS BEFORE YOU PUBLISH.
+
+               This paragraph is a draft written from what the system does, not a
+               record of what actually happened to you. An interviewer will ask you
+               to go deeper on it — "how did you find it?", "what did you try first?"
+               — so it has to be a bug you genuinely hit and can talk through
+               unscripted. If this isn't the one, swap in one of the alternates
+               below, or replace all of it with your own.
+
+               A good way to find the real one: look back through your commit
+               messages for the fix that took longest, or think about which bug
+               kept you up.
+
+               ---- ALTERNATE A · broken access control -----------------------
+               I had the portals separated by role in the navigation, so a student
+               never saw a link to the teacher pages, and I assumed that was
+               enough. It wasn't — pasting a teacher URL straight into the address
+               bar loaded the page, because the session check lived in the layout
+               include and a couple of pages had been written without it. I moved
+               the role check to the top of every protected page so it runs before
+               anything renders, instead of relying on the menu to hide things.
+               Hiding a link isn't access control.
+
+               ---- ALTERNATE B · averages with unreleased grades --------------
+               General averages came out wrong for any student whose teachers
+               hadn't all submitted yet. I was summing the grades that existed and
+               dividing by the total number of subjects, so an unreleased subject
+               silently counted as a zero and pulled the average down by ten points
+               or more. The fix was to divide only by the subjects that actually
+               have a released grade, and to label the figure as a running average
+               until every subject is in, so an in-progress number can't be
+               mistaken for a final one.
+               ================================================================== -->
+          <p class="note">
+            The first version let a teacher edit a grade after it had already been approved and
+            published, and the change went straight through to the student. The approval step only
+            ran on first submission, so the entire review process could be skipped just by editing
+            afterwards — I only caught it testing with a teacher and a student account open side
+            by side. The fix was to stop treating approval as a one-time flag and make the grade's
+            status a real state instead: editing a published grade drops it back to
+            <em>awaiting adviser review</em> and hides it from the student until it's confirmed
+            again. What I took from it is that a workflow isn't finished when the happy path works.
+            It's finished when you know what every edit does to the state.
+          </p>
+        </div>
+
+        <div class="case__block" style="margin-bottom:2rem">
+          <h4>Built with</h4>
+          <ul class="tags">
+            <li class="tag tag--solid">HTML</li>
+            <li class="tag tag--solid">CSS</li>
+            <li class="tag tag--solid">JavaScript</li>
+            <li class="tag tag--solid">PHP</li>
+            <li class="tag tag--solid">MySQL</li>
+            <li class="tag">phpMyAdmin</li>
+            <li class="tag">XAMPP</li>
+          </ul>
+        </div>
+
+        <div class="case__block">
+          <h4>Screens</h4>
+          <!-- Each button becomes a lightbox slide. To use a real screenshot,
+               replace the inner .shot-placeholder div with an <img> and set
+               data-full to the full-size file. -->
+          <div class="gallery" id="gallery">
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/01-homepage-hero-lg.jpg"
+                    data-caption="Public home page — enrolment, campus and class-shift information">
+              <img src="assets/img/01-homepage-hero-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Public home page">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/04-student-dashboard-lg.jpg"
+                    data-caption="Student portal — term summary, grade trends and announcements">
+              <img src="assets/img/04-student-dashboard-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Student portal dashboard">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/05-student-report-of-grades-lg.jpg"
+                    data-caption="Report of grades — per-term marks, honours tracking and the Observed Values rubric">
+              <img src="assets/img/05-student-report-of-grades-sm.jpg" width="620" height="611"
+                   loading="lazy" decoding="async" alt="Student report of grades">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/07-teacher-dashboard-lg.jpg"
+                    data-caption="Teacher portal — class load, upload status and pending approvals">
+              <img src="assets/img/07-teacher-dashboard-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Teacher portal dashboard">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/12-admin-dashboard-lg.jpg"
+                    data-caption="Admin overview — school-wide averages, passing rate and grade distribution">
+              <img src="assets/img/12-admin-dashboard-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Administrator dashboard showing school-wide grade statistics">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/13-admin-dashboard-full-page-lg.jpg"
+                    data-caption="Admin overview in full — submission tracking, 14-day activity, school-year and database backup tools">
+              <img src="assets/img/13-admin-dashboard-full-page-sm.jpg" width="620" height="1076"
+                   loading="lazy" decoding="async" alt="Full administrator dashboard page">
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ---------------- Project 02 ---------------- -->
+    <article class="case reveal" style="margin-top:clamp(1.5rem,4vw,2.5rem)">
+      <div class="case__body">
+
+        <div class="case__head">
+          <div>
+            <p class="case__num">02 — Student tool</p>
+            <h3 class="case__title">GWA Calculator &amp;<br>Honours Tracker</h3>
+            <p class="case__role">Solo — vanilla JavaScript, no libraries</p>
+          </div>
+          <div class="case__links">
+            <a class="btn btn--primary btn--sm" href="gwa/">
+              Try it live
+              <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <!--
+              Source-code button removed: this repo is not pushed yet, so the link 404s.
+              Restore once the portfolio is on GitHub.
+
+            <a class="btn btn--ghost btn--sm" href="https://github.com/giomelicano/portfolio/tree/main/gwa" target="_blank" rel="noopener noreferrer">
+              Source code
+              <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            -->
+
+          </div>
+        </div>
+
+        <div class="case__cols">
+          <div class="case__block">
+            <h4>The problem</h4>
+            <p>
+              Every student works their general average out on a phone calculator, and the
+              question they actually want answered isn't "what is my average" — it's
+              "what do I need next quarter to make honours?" Nothing answers the second one.
+            </p>
+          </div>
+
+          <div class="case__block">
+            <h4>What I built</h4>
+            <ul class="built-list">
+              <li><strong>Live general average</strong> — enter grades per quarter, get rounded subject finals and a running general average that updates as you type.</li>
+              <li><strong>Honours standing</strong> — checked against all the criteria, including the rule that no single subject may fall below 85.</li>
+              <li><strong>A reverse planner</strong> — pick a target and it tells you the lowest grade you'd need in every box you've left blank.</li>
+              <li><strong>Saves as you go</strong> — everything persists in <code>localStorage</code>, so nothing is lost on refresh and no data ever leaves the device.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="case__block" style="margin-bottom:2rem">
+          <h4>What was hard</h4>
+          <p class="note">
+            The planner looks like simple algebra until the rounding gets in the way. Subject
+            finals are rounded to whole numbers <em>before</em> they're averaged, so the general
+            average is a step function of your next grade, not a straight line — solving it
+            algebraically gives answers that are off by one at exactly the boundaries people
+            care about. With three quarters at 90 and a target of 90, the algebra says you need
+            90; you actually only need 88, because 89.5 rounds up. So I stopped solving it and
+            started searching it: try every whole grade from 0 to 100, recompute the whole result
+            each time, return the first that works. 101 iterations is nothing, and it's exact by
+            construction rather than approximately right. I verified it against 400 randomly
+            generated grade boards, asserting each answer was genuinely the minimum.
+          </p>
+        </div>
+
+        <div class="case__block">
+          <h4>Built with</h4>
+          <ul class="tags">
+            <li class="tag tag--solid">HTML</li>
+            <li class="tag tag--solid">CSS</li>
+            <li class="tag tag--solid">JavaScript</li>
+            <li class="tag">localStorage</li>
+            <li class="tag">No dependencies</li>
+          </ul>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ---------------- Project 03 ----------------
+         Deliberately a shorter card: this was group work and the files are no
+         longer available, so there are no screenshots, no repo and no demo.
+         Given that, a compact honest entry beats forcing it into the full
+         case-study layout with an empty image slot. -->
+    <article class="case reveal" style="margin-top:clamp(1.5rem,4vw,2.5rem)">
+      <div class="case__body">
+
+        <div class="case__head">
+          <div>
+            <p class="case__num">03 — Group project</p>
+            <h3 class="case__title">Catering Booking<br>Website</h3>
+            <p class="case__role">Team of students — my part: front-end and database design</p>
+          </div>
+        </div>
+
+        <div class="case__cols">
+          <div class="case__block">
+            <h4>The problem</h4>
+            <p>
+              A catering business taking bookings by phone and message has no reliable record of
+              what was ordered for which event, and customers can't see what's on offer without
+              asking for it first.
+            </p>
+          </div>
+
+          <div class="case__block">
+            <h4>What the team built</h4>
+            <ul class="built-list">
+              <li>A public catalogue of catering menus and packages with pricing.</li>
+              <li>Date and time selection for the customer's occasion.</li>
+              <li>A booking request form capturing the event details.</li>
+              <li>An admin side for managing menus and packages, viewing bookings, and seeing booking and sales summaries.</li>
+            </ul>
+            <p style="margin-top:0.9rem">
+              Bookings were requests rather than purchases — there was no online payment, and the
+              caterer arranged that directly.
+            </p>
+          </div>
+        </div>
+
+        <div class="case__block" style="margin-bottom:2rem">
+          <h4>What I did</h4>
+          <ul class="built-list">
+            <li><strong>Front-end</strong> — the menu and package pages, the booking form, and the responsive layout.</li>
+            <li><strong>Database design</strong> — the MySQL tables for menus, packages and bookings, and the relationships between them.</li>
+          </ul>
+        </div>
+
+        <div class="case__block">
+          <h4>Project stack</h4>
+          <ul class="tags">
+            <li class="tag tag--solid">HTML</li>
+            <li class="tag tag--solid">CSS</li>
+            <li class="tag tag--solid">JavaScript</li>
+            <li class="tag tag--solid">PHP</li>
+            <li class="tag tag--solid">MySQL</li>
+          </ul>
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======================================================================
+     Contact
+     ====================================================================== -->
+<section class="section section--alt" id="contact">
+  <div class="wrap">
+    <div class="contact__grid">
+
+      <div class="reveal">
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="section-title">Let's talk.</h2>
+        <p class="section-intro">
+          Looking for an intern, have an OJT slot, or just want to ask about something I built?
+          Send a message and I'll reply.
+        </p>
+
+        <div class="contact__direct">
+          <span class="fact__key">Email</span>
+          <a href="mailto:giomelicano16@gmail.com">giomelicano16@gmail.com</a>
+        </div>
+
+        <div class="contact__direct">
+          <span class="fact__key">Based in</span>
+          <span>Dasmariñas, Cavite · open to remote</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <!-- Netlify Forms: the attributes below are what make this work once
+             deployed. No backend, no third-party script. Submissions appear
+             under Forms in the Netlify dashboard. -->
+        <form class="form" id="contact-form" name="contact" method="POST"
+              data-netlify="true" netlify-honeypot="bot-field" novalidate>
+
+          <input type="hidden" name="form-name" value="contact">
+
+          <!-- Bot trap: real people never see or fill this -->
+          <p class="hp" aria-hidden="true">
+            <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <div class="field" id="field-name">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" autocomplete="name"
+                   required aria-describedby="err-name">
+            <span class="field__error" id="err-name" role="alert"></span>
+          </div>
+
+          <div class="field" id="field-email">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email"
+                   required aria-describedby="err-email">
+            <span class="field__error" id="err-email" role="alert"></span>
+          </div>
+
+          <div class="field" id="field-message">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required
+                      aria-describedby="err-message"></textarea>
+            <span class="field__error" id="err-message" role="alert"></span>
+          </div>
+
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+
+          <div>
+            <button class="btn btn--primary" type="submit" id="submit-btn">
+              Send message
+              <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================================
+     Footer
+     ====================================================================== -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p>© <span id="year">2026</span> Jose Gio L. Melicano · Built from scratch with HTML, CSS &amp; JavaScript</p>
+    <a class="to-top" href="#top">
+      Back to top
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- ======================================================================
+     Lightbox (populated by js/main.js)
+     ====================================================================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="lightbox__btn lightbox__close" id="lb-close" type="button" aria-label="Close viewer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lightbox__btn lightbox__prev" id="lb-prev" type="button" aria-label="Previous screenshot">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="lightbox__btn lightbox__next" id="lb-next" type="button" aria-label="Next screenshot">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+  <figure class="lightbox__figure">
+    <!-- No src attribute: an empty one resolves to the page URL and fires a
+         wasted request. main.js sets it when a slide opens. -->
+    <img class="lightbox__img" id="lb-img" alt="">
+    <figcaption class="lightbox__caption" id="lb-caption"></figcaption>
+  </figure>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
