@@ -34,7 +34,11 @@ function Save-Resized {
 }
 
 $results = @()
-Get-ChildItem $src -Filter '*.png' | Sort-Object Name | ForEach-Object {
+# og-image.png is already sized for the link preview and is referenced as a PNG,
+# so resizing it only produces two JPEGs nothing loads.
+Get-ChildItem $src -Filter '*.png' |
+    Where-Object { $_.Name -ne 'og-image.png' } |
+    Sort-Object Name | ForEach-Object {
     $img  = [System.Drawing.Image]::FromFile($_.FullName)
     $base = $_.BaseName
     $beforeKB = [math]::Round($_.Length / 1KB, 1)

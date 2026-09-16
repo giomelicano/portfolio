@@ -82,9 +82,11 @@ sentences: what broke, what you tried, what actually fixed it.
 The "What I built" bullets and the résumé project bullets were written **from your
 screenshots**, not from your code. Read them and correct anything wrong. Specifically:
 
-- The numbers quoted on the résumé (217 learners, 50 teachers, 100 classes) come off your
-  admin dashboard. If that was seeded demo data rather than the real roll, either say so or
-  drop the figures — do not let an interviewer catch that.
+- The numbers quoted on the résumé (340 learners, 50 teachers, 100 classes) come off your
+  admin dashboard, which is running demo data rather than the real roll. Keep the figures —
+  they describe what the system handles — but if you are asked whether it is live with the
+  school, say it is deployed and populated with demo records. Do not let that land as a
+  correction from the interviewer.
 - I described the approval workflow as *not submitted → awaiting review → returned →
   published* based on the admin panel's status list. Check that matches what you built.
 - I avoided naming a charting library because I couldn't tell from a screenshot. If you used
@@ -95,16 +97,21 @@ screenshots**, not from your code. Read them and correct anything wrong. Specifi
 
 ### Screenshots — already wired up
 
-The six PNGs you added were 2880px wide and **6.7 MB** in total, which would have made the
-page painful on mobile data. Each one has been resized and re-encoded into two JPEGs:
+Eight shots are in the gallery: the public home page, two student screens, two teacher
+screens and three admin screens. Every PNG you drop in `assets/img/` is resized and
+re-encoded into two JPEGs:
 
 ```
-<name>-lg.jpg   1600px wide, quality 80  → opens in the lightbox
-<name>-sm.jpg    620px wide, quality 76  → the gallery thumbnail
+<name>-lg.jpg   up to 1600px wide, quality 80  → opens in the lightbox
+<name>-sm.jpg           620px wide, quality 76  → the gallery thumbnail
 ```
 
-Totals: 6.7 MB → **1.15 MB** of large versions and **246 KB** of thumbnails. The page only
-loads the thumbnails up front; the large ones load when a screenshot is opened.
+Totals: 4.9 MB of PNGs → **858 KB** of large versions and **218 KB** of thumbnails. The page
+only loads the thumbnails up front; the large ones load when a screenshot is opened.
+
+The portal shots are 1380×640, narrower than the 1600px `-lg` target, so they are passed
+through at their own size rather than upscaled. Gallery cells are 16/10 and crop from the
+top — frame the next one with the title and any headline figures near the top edge.
 
 The original PNGs are still on your disk but are **gitignored**, so they don't bloat the repo
 or the deploy. If you add or replace a screenshot later, drop the new PNG into `assets/img/`

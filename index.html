@@ -473,9 +473,9 @@
 
         <div class="case__block">
           <h4>Screens</h4>
-          <!-- Each button becomes a lightbox slide. To use a real screenshot,
-               replace the inner .shot-placeholder div with an <img> and set
-               data-full to the full-size file. -->
+          <!-- Each button becomes a lightbox slide: data-full is the large image,
+               data-caption the line shown under it. Thumbnails are cropped to the
+               grid's 16/10 from the top, so keep the informative part up there. -->
           <div class="gallery" id="gallery">
             <button class="gallery__item" type="button"
                     data-full="assets/img/01-homepage-hero-lg.jpg"
@@ -484,34 +484,46 @@
                    loading="lazy" decoding="async" alt="Public home page">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/04-student-dashboard-lg.jpg"
-                    data-caption="Student portal — term summary, grade trends and announcements">
-              <img src="assets/img/04-student-dashboard-sm.jpg" width="620" height="388"
-                   loading="lazy" decoding="async" alt="Student portal dashboard">
+                    data-full="assets/img/02-student-overview-lg.jpg"
+                    data-caption="Student portal — general average, subjects passing and honours standing for the term">
+              <img src="assets/img/02-student-overview-sm.jpg" width="620" height="288"
+                   loading="lazy" decoding="async" alt="Student portal overview showing general average, subjects passing and honours standing">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/05-student-report-of-grades-lg.jpg"
-                    data-caption="Report of grades — per-term marks, honours tracking and the Observed Values rubric">
-              <img src="assets/img/05-student-report-of-grades-sm.jpg" width="620" height="611"
-                   loading="lazy" decoding="async" alt="Student report of grades">
+                    data-full="assets/img/03-student-grades-lg.jpg"
+                    data-caption="Report of grades — every subject across three terms, with the computed final and a passing remark">
+              <img src="assets/img/03-student-grades-sm.jpg" width="620" height="288"
+                   loading="lazy" decoding="async" alt="Student report of grades listing each subject across three terms with final marks">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/07-teacher-dashboard-lg.jpg"
-                    data-caption="Teacher portal — class load, upload status and pending approvals">
-              <img src="assets/img/07-teacher-dashboard-sm.jpg" width="620" height="388"
-                   loading="lazy" decoding="async" alt="Teacher portal dashboard">
+                    data-full="assets/img/04-teacher-subject-class-lg.jpg"
+                    data-caption="Teacher portal — one subject class, with the pass/at-risk split and who needs following up">
+              <img src="assets/img/04-teacher-subject-class-sm.jpg" width="620" height="288"
+                   loading="lazy" decoding="async" alt="Teacher subject class list with per-learner marks and a class performance breakdown">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/12-admin-dashboard-lg.jpg"
-                    data-caption="Admin overview — school-wide averages, passing rate and grade distribution">
-              <img src="assets/img/12-admin-dashboard-sm.jpg" width="620" height="388"
-                   loading="lazy" decoding="async" alt="Administrator dashboard showing school-wide grade statistics">
+                    data-full="assets/img/05-teacher-class-record-lg.jpg"
+                    data-caption="Adviser's class record — all ten learning areas beside the Observed Values marks">
+              <img src="assets/img/05-teacher-class-record-sm.jpg" width="620" height="288"
+                   loading="lazy" decoding="async" alt="Adviser class record showing every learning area and the Observed Values rubric per learner">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/13-admin-dashboard-full-page-lg.jpg"
-                    data-caption="Admin overview in full — submission tracking, 14-day activity, school-year and database backup tools">
-              <img src="assets/img/13-admin-dashboard-full-page-sm.jpg" width="620" height="1076"
-                   loading="lazy" decoding="async" alt="Full administrator dashboard page">
+                    data-full="assets/img/06-admin-overview-lg.jpg"
+                    data-caption="Admin overview — enrolment, submission progress over 14 days and what still needs attention">
+              <img src="assets/img/06-admin-overview-sm.jpg" width="620" height="288"
+                   loading="lazy" decoding="async" alt="Administrator overview with enrolment totals, a submission activity chart and a needs-attention list">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/07-admin-submissions-lg.jpg"
+                    data-caption="Grade submission status — the four states every class moves through, and how many teachers are complete">
+              <img src="assets/img/07-admin-submissions-sm.jpg" width="620" height="288"
+                   loading="lazy" decoding="async" alt="Grade submission status showing approved, awaiting review, returned and not submitted counts">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/08-admin-academic-performance-lg.jpg"
+                    data-caption="Academic performance — grade distribution across five bands, ranked by subject and by section">
+              <img src="assets/img/08-admin-academic-performance-sm.jpg" width="620" height="288"
+                   loading="lazy" decoding="async" alt="Academic performance analytics with a five-band grade distribution and per-subject and per-section rankings">
             </button>
           </div>
         </div>
