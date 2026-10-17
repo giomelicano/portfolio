@@ -63,9 +63,9 @@
     <p class="r-summary">
       Fourth-year BS Information Systems student graduating June 2027, seeking a web development
       internship or OJT placement. I build sites end to end — responsive front ends in HTML, CSS
-      and JavaScript, and the PHP and MySQL behind them. Most recently a school management system
-      with three role-based portals, a grade approval workflow and an analytics dashboard, on a
-      MySQL schema I designed myself.
+      and JavaScript, and the PHP and MySQL behind them. Most recently a school portal with a
+      three-step grade review, a reader for teachers' Excel class records and a Random Forest
+      at-risk prediction written in PHP, on a MySQL schema I designed myself.
     </p>
   </section>
 
@@ -116,13 +116,13 @@
         <h3 class="r-entry__title">Dasmariñas North NHS — Website &amp; School Portal</h3>
         <span class="r-entry__when">January 2026 – October 2026</span>
       </div>
-      <p class="r-entry__sub">Full-stack — HTML, CSS, JavaScript, PHP, MySQL · <a href="https://dnnhs-portal.free.nf/">dnnhs-portal.free.nf</a></p>
+      <p class="r-entry__sub">Full-stack — HTML, CSS, JavaScript, PHP, MySQL · <a href="https://dnnhs-demo.free.nf/">dnnhs-demo.free.nf</a></p>
       <ul class="r-bullets">
-        <li>Built three role-based portals — student, teacher and administrator — behind a single PHP session login, each with its own permissions, dashboard, text-size control and dark mode.</li>
-        <li>Implemented a grade approval workflow moving marks from teacher submission through adviser review to publication, tracking the state of every class across 100 classes.</li>
-        <li>Designed the MySQL schema for multi-year records, with archiving, activity logs and a one-click <code>.sql</code> export for backups.</li>
-        <li>Built an analytics dashboard reporting school-wide averages, passing rate, grade distribution and per-subject and per-section rankings for 340 learners and 50 teachers.</li>
-        <li>Implemented DepEd grading rules — per-term grades, the 75 passing line, honours thresholds and the Observed Values behaviour rubric.</li>
+        <li>Built learner, teacher and office portals behind one PHP session login; head teacher and adviser are duties inside the teacher portal, so nobody needs a second account.</li>
+        <li>Implemented a three-step grade review — subject teacher, department head, class adviser — where only the adviser publishes and a correction is a full re-upload reviewed again.</li>
+        <li>Wrote an in-browser reader (SheetJS) for the division's E-Class Record workbook that takes each learner's Initial and Term Grade; checked against 500+ real teacher files.</li>
+        <li>Built SARDO, a Random Forest written from scratch in PHP that flags learners likely to fall below 75 next term from six predictors; its results match scikit-learn's exactly.</li>
+        <li>Implemented DepEd Order 015, s. 2026 grading — whole-number finals, descriptors, the Academic Excellence Award, Summer Remedial — and archive-only records with <code>.sql</code> backups.</li>
       </ul>
     </div>
 

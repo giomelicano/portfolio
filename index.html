@@ -199,9 +199,10 @@
           static page stopped being enough for what I wanted to make.
         </p>
         <p class="section-intro" style="margin-top:1.15rem">
-          Most recently that meant building a school management system for Dasmariñas North
-          National High School — three role-based portals, a grade approval workflow, and an
-          analytics dashboard, on top of a MySQL database I designed myself.
+          Most recently that meant building a school portal for Dasmariñas North National High
+          School — a three-step grade review from subject teacher to head teacher to adviser, a
+          reader for the Excel class records teachers already keep, and a Random Forest that flags
+          learners at risk of failing, on top of a MySQL database I designed myself.
         </p>
         <p class="section-intro" style="margin-top:1.15rem">
           I'm looking for an internship or OJT placement where I can work on real projects with
@@ -353,7 +354,7 @@
     <article class="case reveal">
 
       <div class="case__cover">
-        <img src="assets/img/01-homepage-hero-lg.jpg" width="1600" height="1000"
+        <img src="assets/img/01-home-page-lg.jpg" width="1600" height="1000"
              loading="lazy" decoding="async"
              alt="Dasmariñas North National High School home page, showing the school crest over a photo of the campus with enrolment, campus and class-shift information cards">
       </div>
@@ -367,7 +368,7 @@
             <p class="case__role">Full-stack — frontend, database design and authentication</p>
           </div>
           <div class="case__links">
-            <a class="btn btn--ghost btn--sm" href="https://dnnhs-portal.free.nf/" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn--ghost btn--sm" href="https://dnnhs-demo.free.nf/" target="_blank" rel="noopener noreferrer">
               Live site
               <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -390,71 +391,42 @@
             <p>
               The school needed two things from one system. Outside the login: a public site that
               worked on a phone, carrying enrolment dates, campus information and class shifts.
-              Inside it: a way to move a grade from a teacher's class record, through the adviser
-              who has to confirm it, and out to the student — with someone able to see, at any
-              point, which of the school's hundred classes had actually handed anything in.
+              Inside it: a way to move a grade from the Excel class record a teacher already keeps,
+              past the head teacher of that subject and the class adviser, and out to the learner —
+              with the office able to see, at any point, which classes had actually handed anything
+              in, and which learners were sliding toward failing before the term was over.
             </p>
           </div>
 
           <div class="case__block">
             <h4>What I built</h4>
             <ul class="built-list">
-              <li><strong>Three role-based portals</strong> — student, teacher and administrator, each with its own navigation, permissions and dashboard, behind one PHP session login.</li>
-              <li><strong>A grade approval workflow</strong> — teachers upload marks per term, advisers confirm them, and students only see a grade once it's published. Every class carries its state: not submitted, awaiting review, returned, or published.</li>
-              <li><strong>DepEd-accurate grading</strong> — three terms per subject with computed finals against the 75 passing line, honours tracked toward 90, and the Observed Values rubric (Maka-Diyos, Makatao, Makakalikasan, Makabansa) recorded per term.</li>
-              <li><strong>An analytics dashboard</strong> — school-wide average and passing rate, grade distribution across five bands, per-subject and per-section rankings with failing counts, and submission progress over a rolling 14 days.</li>
-              <li><strong>Multi-year records and admin tooling</strong> — data filed by school year with archives, activity logs, and a one-click <code>.sql</code> export so the database can be backed up and restored through phpMyAdmin.</li>
-              <li><strong>Accessibility in every portal</strong> — a three-step text-size control and a dark mode, available to students, teachers and admins alike rather than just on the public site.</li>
+              <li><strong>Three portals, five jobs</strong> — learner, teacher and office portals behind one PHP session login. Head teacher and class adviser are duties inside the teacher portal rather than extra accounts, so a teacher who also heads a department and advises a section signs in once.</li>
+              <li><strong>A three-step grade review</strong> — subject teacher, then the head teacher of that department, then the class adviser, and only the adviser publishes. Heads see each sheet's share below 75 before passing it on, and holding or returning a sheet needs a comment. Published grades are locked; a correction is a full re-upload that goes through both reviews again, with the old and new marks kept.</li>
+              <li><strong>Reads the teachers' own class records</strong> — teachers upload the division's E-Class Record workbook as it is. The browser reads each learner's Initial and Term Grade from the right term sheet, MAPEH halves included, and flags names that don't match the class list instead of guessing. I checked it against more than 500 of the school's real files.</li>
+              <li><strong>Grading under DepEd Order 015, s. 2026</strong> — three terms, whole-number finals against the 75 passing line, descriptors from Advancing to Emerging, the Academic Excellence Award (a 90+ average with no final below 80), Summer Remedial and promotion remarks. Advisers print report cards to PDF or Word.</li>
+              <li><strong>SARDO, an at-risk prediction</strong> — a Random Forest I wrote from scratch in PHP, because the free host runs nothing else. It flags learners likely to fall below 75 next term from six predictors (below 75, a falling grade, failing three or more, frequent absences, over-age, gender) and shows why for each one. It learns from the public UCI Student Performance dataset until the office switches it to the school's own grades, and its results match scikit-learn's exactly.</li>
+              <li><strong>Made for a school office to run</strong> — nothing is deleted (teachers, learners and sections are archived and can be restored), duplicates are refused, passwords only ever go out by email, every action lands in an activity log, and a one-click <code>.sql</code> backup restores cleanly on shared hosting. Text size and dark mode work in every portal.</li>
             </ul>
           </div>
         </div>
 
         <div class="case__block" style="margin-bottom:2rem">
           <h4>What was hard</h4>
-          <!-- ==================================================================
-               VERIFY THIS BEFORE YOU PUBLISH.
-
-               This paragraph is a draft written from what the system does, not a
-               record of what actually happened to you. An interviewer will ask you
-               to go deeper on it — "how did you find it?", "what did you try first?"
-               — so it has to be a bug you genuinely hit and can talk through
-               unscripted. If this isn't the one, swap in one of the alternates
-               below, or replace all of it with your own.
-
-               A good way to find the real one: look back through your commit
-               messages for the fix that took longest, or think about which bug
-               kept you up.
-
-               ---- ALTERNATE A · broken access control -----------------------
-               I had the portals separated by role in the navigation, so a student
-               never saw a link to the teacher pages, and I assumed that was
-               enough. It wasn't — pasting a teacher URL straight into the address
-               bar loaded the page, because the session check lived in the layout
-               include and a couple of pages had been written without it. I moved
-               the role check to the top of every protected page so it runs before
-               anything renders, instead of relying on the menu to hide things.
-               Hiding a link isn't access control.
-
-               ---- ALTERNATE B · averages with unreleased grades --------------
-               General averages came out wrong for any student whose teachers
-               hadn't all submitted yet. I was summing the grades that existed and
-               dividing by the total number of subjects, so an unreleased subject
-               silently counted as a zero and pulled the average down by ten points
-               or more. The fix was to divide only by the subjects that actually
-               have a released grade, and to label the figure as a running average
-               until every subject is in, so an in-progress number can't be
-               mistaken for a final one.
-               ================================================================== -->
           <p class="note">
-            The first version let a teacher edit a grade after it had already been approved and
-            published, and the change went straight through to the student. The approval step only
-            ran on first submission, so the entire review process could be skipped just by editing
-            afterwards — I only caught it testing with a teacher and a student account open side
-            by side. The fix was to stop treating approval as a one-time flag and make the grade's
-            status a real state instead: editing a published grade drops it back to
-            <em>awaiting adviser review</em> and hides it from the student until it's confirmed
-            again. What I took from it is that a workflow isn't finished when the happy path works.
-            It's finished when you know what every edit does to the state.
+            Twice, the live site broke in a way the portal should have fixed by itself. It upgrades
+            its own database: every request checks a schema version and runs whatever changes are
+            missing. But once the version matched, that check returned straight away — so it healed
+            a database that was behind and did nothing for one that was damaged. When a table went
+            missing from a database already marked current, nothing ever created it again. Once it
+            was the table that records sign-in attempts, and nobody could log in. Another time it
+            was the password-reset table, which broke both the office's Reset password button and
+            the emailed Forgot link — two symptoms, one cause. The fix was a repair step that runs
+            on every request, before the version check: logs and token tables are rebuilt empty,
+            while the tables holding the school's actual work are never recreated behind anyone's
+            back — the office is told which one is missing instead. What I took from it is that an
+            upgrade path that only moves forward assumes the database is never damaged, and a live
+            database eventually is.
           </p>
         </div>
 
@@ -466,6 +438,8 @@
             <li class="tag tag--solid">JavaScript</li>
             <li class="tag tag--solid">PHP</li>
             <li class="tag tag--solid">MySQL</li>
+            <li class="tag">SheetJS</li>
+            <li class="tag">Random Forest</li>
             <li class="tag">phpMyAdmin</li>
             <li class="tag">XAMPP</li>
           </ul>
@@ -478,52 +452,52 @@
                grid's 16/10 from the top, so keep the informative part up there. -->
           <div class="gallery" id="gallery">
             <button class="gallery__item" type="button"
-                    data-full="assets/img/01-homepage-hero-lg.jpg"
+                    data-full="assets/img/01-home-page-lg.jpg"
                     data-caption="Public home page — enrolment, campus and class-shift information">
-              <img src="assets/img/01-homepage-hero-sm.jpg" width="620" height="388"
+              <img src="assets/img/01-home-page-sm.jpg" width="620" height="388"
                    loading="lazy" decoding="async" alt="Public home page">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/02-student-overview-lg.jpg"
-                    data-caption="Student portal — general average, subjects passing and honours standing for the term">
-              <img src="assets/img/02-student-overview-sm.jpg" width="620" height="288"
-                   loading="lazy" decoding="async" alt="Student portal overview showing general average, subjects passing and honours standing">
+                    data-full="assets/img/02-learner-overview-lg.jpg"
+                    data-caption="Learner portal — general average, subjects passing and award standing, with every subject's latest grade">
+              <img src="assets/img/02-learner-overview-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Learner overview showing a 94 general average, 8 of 8 subjects passing and an Academic Excellence Award standing">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/03-student-grades-lg.jpg"
-                    data-caption="Report of grades — every subject across three terms, with the computed final and a passing remark">
-              <img src="assets/img/03-student-grades-sm.jpg" width="620" height="288"
-                   loading="lazy" decoding="async" alt="Student report of grades listing each subject across three terms with final marks">
+                    data-full="assets/img/03-learner-grades-lg.jpg"
+                    data-caption="Report of grades — every subject across three terms, with the final, a descriptor and a remark, beside the award standing">
+              <img src="assets/img/03-learner-grades-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Learner report of grades listing each subject's three terms, final grade, descriptor and remark">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/04-teacher-subject-class-lg.jpg"
-                    data-caption="Teacher portal — one subject class, with the pass/at-risk split and who needs following up">
-              <img src="assets/img/04-teacher-subject-class-sm.jpg" width="620" height="288"
-                   loading="lazy" decoding="async" alt="Teacher subject class list with per-learner marks and a class performance breakdown">
+                    data-full="assets/img/04-teacher-overview-lg.jpg"
+                    data-caption="Teacher portal — advisory class, subject load, the head teacher their grades go to, and each class's progress through the terms">
+              <img src="assets/img/04-teacher-overview-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Teacher overview showing the advisory section, subject load, head teacher and per-class progress">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/05-teacher-class-record-lg.jpg"
-                    data-caption="Adviser's class record — all ten learning areas beside the Observed Values marks">
-              <img src="assets/img/05-teacher-class-record-sm.jpg" width="620" height="288"
-                   loading="lazy" decoding="async" alt="Adviser class record showing every learning area and the Observed Values rubric per learner">
+                    data-full="assets/img/05-adviser-summary-of-grades-lg.jpg"
+                    data-caption="Adviser's summary of grades — the whole section across all ten learning areas, failing marks in red; report cards print from here">
+              <img src="assets/img/05-adviser-summary-of-grades-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Adviser's summary of grades table with every learner's marks in ten learning areas, colour-coded by band">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/06-admin-overview-lg.jpg"
+                    data-full="assets/img/06-admin-school-pulse-lg.jpg"
                     data-caption="Admin overview — enrolment, submission progress over 14 days and what still needs attention">
-              <img src="assets/img/06-admin-overview-sm.jpg" width="620" height="288"
-                   loading="lazy" decoding="async" alt="Administrator overview with enrolment totals, a submission activity chart and a needs-attention list">
+              <img src="assets/img/06-admin-school-pulse-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Administrator overview with learner, teacher and section totals, a 14-day submission chart and a needs-attention list">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/07-admin-submissions-lg.jpg"
-                    data-caption="Grade submission status — the four states every class moves through, and how many teachers are complete">
-              <img src="assets/img/07-admin-submissions-sm.jpg" width="620" height="288"
-                   loading="lazy" decoding="async" alt="Grade submission status showing approved, awaiting review, returned and not submitted counts">
+                    data-full="assets/img/07-admin-submission-status-lg.jpg"
+                    data-caption="Grade submission status — where every class stands, how many teachers are complete, which class lists are missing, and the year's setup checklist">
+              <img src="assets/img/07-admin-submission-status-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Admin cards for grade submission status, teacher completion, missing class lists, school-year setup and portal sign-ins">
             </button>
             <button class="gallery__item" type="button"
-                    data-full="assets/img/08-admin-academic-performance-lg.jpg"
-                    data-caption="Academic performance — grade distribution across five bands, ranked by subject and by section">
-              <img src="assets/img/08-admin-academic-performance-sm.jpg" width="620" height="288"
-                   loading="lazy" decoding="async" alt="Academic performance analytics with a five-band grade distribution and per-subject and per-section rankings">
+                    data-full="assets/img/08-admin-sardo-lg.jpg"
+                    data-caption="Academic performance and SARDO — school average and passing rate, and the learners a Random Forest model flags as likely to fall below 75 next term, with the predictors behind each flag">
+              <img src="assets/img/08-admin-sardo-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Academic performance tab with school average, passing rate and the SARDO at-risk table showing each learner's predictors">
             </button>
           </div>
         </div>

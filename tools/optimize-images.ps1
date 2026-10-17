@@ -2,7 +2,7 @@
 # Produces two JPEGs per source: -lg (lightbox) and -sm (gallery thumbnail).
 Add-Type -AssemblyName System.Drawing
 
-$src = 'C:\portfolio\assets\img'
+$src = Join-Path $PSScriptRoot '..\assets\img'   # wherever the repo is cloned
 $jpegCodec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() |
              Where-Object { $_.MimeType -eq 'image/jpeg' }
 
