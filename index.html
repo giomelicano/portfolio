@@ -670,17 +670,20 @@
       </div>
 
       <div class="reveal">
-        <!-- Netlify Forms: the attributes below are what make this work once
-             deployed. No backend, no third-party script. Submissions appear
-             under Forms in the Netlify dashboard. -->
+        <!-- Web3Forms emails every message straight to giomelicano16@gmail.com.
+             The access key is meant to be public: it can only send to that inbox.
+             js/main.js posts this in the background; without JavaScript the
+             form still posts to Web3Forms directly. -->
         <form class="form" id="contact-form" name="contact" method="POST"
-              data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              action="https://api.web3forms.com/submit" novalidate>
 
-          <input type="hidden" name="form-name" value="contact">
+          <input type="hidden" name="access_key" value="5e93cf68-9c99-43a2-896f-c6d9b6f0f707">
+          <input type="hidden" name="subject" value="New message from your portfolio">
+          <input type="hidden" name="from_name" value="giomelicano-portfolio">
 
-          <!-- Bot trap: real people never see or fill this -->
+          <!-- Bot trap: real people never see or tick this; Web3Forms drops anything that has it -->
           <p class="hp" aria-hidden="true">
-            <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            <label>Don't tick this if you're human: <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
           </p>
 
           <div class="field" id="field-name">
@@ -755,6 +758,7 @@
   </figure>
 </div>
 
-<script src="js/main.js"></script>
+<!-- /js/* is cached for a week (netlify.toml): bump ?v= whenever main.js changes -->
+<script src="js/main.js?v=2"></script>
 </body>
 </html>

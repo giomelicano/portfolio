@@ -242,15 +242,17 @@ re-drag it every time you change something.
    Netlify gives you a random name like `fluffy-panda-4f2a1b`; the URL already written into
    your résumé and meta tags assumes `giomelicano-portfolio`, so this step is required, not
    cosmetic.
-2. **Turn on form notifications** — Forms → *contact* → Settings → *Add notification* →
-   *Email notification*, sent to `giomelicano16@gmail.com`. Without this, messages sit in
-   the dashboard and you never find out.
+2. **The contact form sends through Web3Forms**, not Netlify Forms (switched 17 Oct 2026,
+   because Netlify's email notifications asked for a paid plan). Each message is emailed to
+   `giomelicano16@gmail.com` from Web3Forms. The access key in the form's hidden
+   `access_key` field is tied to that address and is safe to leave public. To send to a
+   different inbox, get a new key at web3forms.com and replace it.
 3. **Test the form** — submit it on the live site and confirm the email arrives. Do this
    once; a contact form that silently fails is worse than no contact form.
 4. **Update the placeholders** in table rows 3 above with your real URL, then redeploy.
 
-Netlify's free tier covers 100 form submissions per month, which is far more than a
-portfolio will ever get.
+Web3Forms' free plan covers 250 messages a month, which is far more than a portfolio
+will ever get.
 
 ---
 

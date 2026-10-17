@@ -251,8 +251,8 @@
 
   /* ------------------------------------------------------------------------
      6. Contact form
-     Validates in the browser, then posts to Netlify Forms in the background
-     so the visitor stays on the page.
+     Validates in the browser, then posts to Web3Forms in the background so
+     the visitor stays on the page. Web3Forms emails the message to Gmail.
      ------------------------------------------------------------------------ */
 
   var form = $("#contact-form");
@@ -334,16 +334,23 @@
       var originalLabel = submitBtn.innerHTML;
       submitBtn.textContent = "Sending…";
 
-      /* Netlify expects a urlencoded body containing form-name */
-      var body = new URLSearchParams(new FormData(form)).toString();
+      /* Web3Forms answers with JSON; a 200 alone isn't proof, so read success */
+      var data = {};
+      new FormData(form).forEach(function (value, key) { data[key] = value; });
 
-      fetch("/", {
+      fetch(form.action, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data)
       })
         .then(function (response) {
-          if (!response.ok) throw new Error("Request failed: " + response.status);
+          return response.json().catch(function () { return {}; }).then(function (json) {
+            if (!response.ok || !json.success) {
+              throw new Error(json.message || "Request failed: " + response.status);
+            }
+          });
+        })
+        .then(function () {
           form.reset();
           showStatus("Thanks — your message was sent. I'll get back to you soon.", "success");
         })
