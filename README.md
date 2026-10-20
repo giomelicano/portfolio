@@ -317,7 +317,6 @@ portfolio/
 │   └── resume.css      # résumé screen + @media print
 ├── js/
 │   └── main.js         # theme, nav, reveal, lightbox, form
-├── gwa/                # the old project 02, no longer listed (see below)
 ├── assets/img/         # screenshots, photo, og-image.png
 ├── tools/              # image resize script
 ├── netlify.toml        # publish config + security headers
@@ -344,48 +343,10 @@ and keep new filenames: `/assets/*` is cached for a year.
 The card's figures come from the app's code. If the app changes, re-check them: the 59
 unit tests (`npx vitest run` in the app's repo), 222 foods (128 Filipino; 111 usable in plans), 2 g/kg protein, 25% fat, +300 kcal, and the 28-day measured burn.
 
-## The old project 02 — the GWA calculator
+## The GWA calculator (removed)
 
-No longer listed on the page or in the sitemap, but the files still deploy, so
-`yoursite.netlify.app/gwa/` keeps working for anyone who has the link. Delete `gwa/` to take
-it down.
-
-```
-gwa/
-├── index.html
-├── css/app.css
-└── js/app.js        # rules, state, calculations, planner, rendering
-```
-
-**The bit worth being able to explain.** The planner answers "what's the lowest grade I
-need in every remaining box?" That looks like algebra, but subject finals are rounded to
-whole numbers *before* they're averaged, so the general average is a step function of your
-next grade rather than a straight line — a closed-form answer is off by one exactly at the
-boundaries people care about. With three quarters at 90 and a target of 90, algebra says
-you need 90; you actually only need 88, because 89.5 rounds up.
-
-So it doesn't solve it, it searches it: try every whole grade 0–100, recompute the whole
-result each time, return the first that works. 101 iterations over a handful of subjects is
-far too cheap to be worth optimising, and it's exact by construction. That trade — spending
-cycles you have to buy correctness you'd otherwise have to prove — is a good thing to be
-able to talk through.
-
-**Two structural decisions you should also be able to defend:**
-
-- `renderSubjects()` and `renderResults()` are separate. Rebuilding the rows on every
-  keystroke would destroy the input being typed into, so only structural changes (add,
-  remove, reset, term count) rebuild; everything else updates values in place.
-- All the calculations are pure functions that take subjects and return numbers, touching
-  no DOM. That's what lets the planner replay them 101 times cheaply, and it's why the
-  logic could be tested from the console without a test framework.
-
-**Verify the rules.** Thresholds live in the `RULES` object at the top of `js/app.js` —
-passing at 75, honours at 90/95/98, and no subject below 85 for honours. Check those against
-your school's current DepEd guidelines before relying on it. They're in one place precisely
-so they're easy to correct.
-
-`window.GWA` is exposed in the console (`subjectFinal`, `generalAverage`, `planFor`) if you
-want to poke at the maths.
+The old project 02 lived in `gwa/` until 20 Oct 2026. It is gone from the site, but still in
+git history: `git show 66e2492:gwa/js/app.js` (or `git checkout 66e2492 -- gwa`) brings it back.
 
 ### The profile photo
 
