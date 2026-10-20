@@ -272,6 +272,9 @@
           <li class="tag">HTML5</li>
           <li class="tag">CSS3</li>
           <li class="tag">JavaScript (ES6+)</li>
+          <li class="tag">TypeScript</li>
+          <li class="tag">React</li>
+          <li class="tag">Tailwind CSS</li>
           <li class="tag">Responsive design</li>
           <li class="tag">Flexbox &amp; Grid</li>
           <li class="tag">DOM manipulation</li>
@@ -505,23 +508,29 @@
       </div>
     </article>
 
-    <!-- ---------------- Project 02 ---------------- -->
+    <!-- ---------------- Project 02 ----------------
+         The repo (github.com/giomelicano/lean-bulk-tracker) is private, so there
+         is no Source code button; add one if it is ever made public. The
+         screenshots carry made-up sample data, loaded into a throwaway browser. -->
     <article class="case reveal" style="margin-top:clamp(1.5rem,4vw,2.5rem)">
+
+      <div class="case__cover">
+        <img src="assets/img/11-lean-bulk-cover-lg.jpg" width="1600" height="1000"
+             loading="lazy" decoding="async"
+             alt="Three phone screens of Lean Bulk Tracker: today's calories against a 2,508 kcal target, a generated meal plan with its protein, carbs and fat, and the measured burn from four weeks of logs">
+      </div>
+
       <div class="case__body">
 
         <div class="case__head">
           <div>
-            <p class="case__num">02 — Student tool</p>
-            <h3 class="case__title">GWA Calculator &amp;<br>Honours Tracker</h3>
-            <p class="case__role">Solo — vanilla JavaScript, no libraries</p>
+            <p class="case__num">02 — Mobile web app</p>
+            <h3 class="case__title">Lean Bulk Tracker</h3>
+            <p class="case__role">Solo — React and TypeScript, installable on a phone; visual style adapted from a fitness-app concept</p>
           </div>
           <div class="case__links">
-            <a class="btn btn--primary btn--sm" href="gwa/">
+            <a class="btn btn--primary btn--sm" href="https://lean-bulk-tracker-jwg4.netlify.app/" target="_blank" rel="noopener noreferrer">
               Try it live
-              <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
-            </a>
-            <a class="btn btn--ghost btn--sm" href="https://github.com/giomelicano/portfolio/tree/main/gwa" target="_blank" rel="noopener noreferrer">
-              Source code
               <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
           </div>
@@ -531,19 +540,23 @@
           <div class="case__block">
             <h4>The problem</h4>
             <p>
-              Every student works their general average out on a phone calculator, and the
-              question they actually want answered isn't "what is my average" — it's
-              "what do I need next quarter to make honours?" Nothing answers the second one.
+              Most calorie apps are built for losing weight. On a lean bulk the question is the
+              opposite — how much more to eat, mostly protein, without putting on fat — and the
+              answer moves every day you train. They also hand you one burn figure from a formula
+              and never check it against what your scale says, and their food lists rarely know
+              what adobo or pandesal is.
             </p>
           </div>
 
           <div class="case__block">
             <h4>What I built</h4>
             <ul class="built-list">
-              <li><strong>Live general average</strong> — enter grades per quarter, get rounded subject finals and a running general average that updates as you type.</li>
-              <li><strong>Honours standing</strong> — checked against all the criteria, including the rule that no single subject may fall below 85.</li>
-              <li><strong>A reverse planner</strong> — pick a target and it tells you the lowest grade you'd need in every box you've left blank.</li>
-              <li><strong>Saves as you go</strong> — everything persists in <code>localStorage</code>, so nothing is lost on refresh and no data ever leaves the device.</li>
+              <li><strong>A target that follows the day</strong> — daily-life burn from Mifflin-St Jeor (or Katch-McArdle when body fat is known), plus the workouts you log, priced with MET values from the Compendium of Physical Activities, plus a +300 kcal surplus. Protein is 2 g/kg, fat 25%, and carbs take the rest, so they rise on training days.</li>
+              <li><strong>Meal plans that hit the numbers</strong> — the app knows 222 foods, 128 of them Filipino dishes and staples alongside the usual gym foods. For each meal it picks from the ones that suit it, then solves the portions to land on the day's protein, carbs and fat in servings a person would actually eat. Swap any food and the rest re-balance.</li>
+              <li><strong>"Eat next"</strong> — ranks foods by how closely their protein/carb/fat mix matches what's left of the day, with a portion that fits the calories left.</li>
+              <li><strong>Measured burn</strong> — four weeks of food logs against the weight trend, a straight-line fit through the weigh-ins with a 95% margin, measure what your body really burns. It offers to correct the formula by the difference.</li>
+              <li><strong>Any food, offline</strong> — Open Food Facts search for packaged foods, custom foods, and recipes built from ingredients. It installs on Android and iPhone, works offline, and keeps everything on the phone in IndexedDB: no account, no server, with export and import for backups.</li>
+              <li><strong>Tested maths</strong> — 59 Vitest unit tests cover the calculations, the meal-plan generator and the food-search parsing, including 20 simulated bulking days from 50 to 100 kg that each plan must land within 5% of.</li>
             </ul>
           </div>
         </div>
@@ -551,28 +564,58 @@
         <div class="case__block" style="margin-bottom:2rem">
           <h4>What was hard</h4>
           <p class="note">
-            The planner looks like simple algebra until the rounding gets in the way. Subject
-            finals are rounded to whole numbers <em>before</em> they're averaged, so the general
-            average is a step function of your next grade, not a straight line — solving it
-            algebraically gives answers that are off by one at exactly the boundaries people
-            care about. With three quarters at 90 and a target of 90, the algebra says you need
-            90; you actually only need 88, because 89.5 rounds up. So I stopped solving it and
-            started searching it: try every whole grade from 0 to 100, recompute the whole result
-            each time, return the first that works. 101 iterations is nothing, and it's exact by
-            construction rather than approximately right. I verified it against 400 randomly
-            generated grade boards, asserting each answer was genuinely the minimum.
+            Getting a meal plan to land on the target with portions anyone would eat. Solved
+            exactly, the maths happily serves odd amounts like 137 g of egg; rounding each food to
+            a real serving afterwards knocks the day off target again. So the solver works in three
+            passes. First a least-squares fit, where each food stays inside its own minimum and
+            maximum and errors are weighed in calories, with protein counting extra because it
+            matters most on a bulk. Then every portion snaps to its serving step — whole eggs,
+            half-cups of rice, 5 g of oil. Then it nudges one food at a time by one step for as long
+            as that brings the day closer. Each meal is solved to its share of the day first and
+            the whole day balanced last, so no meal ends up as a token portion. A big bulk can
+            outrun sensible portions; when that happens it adds a food for whichever macro is
+            furthest short. The random food picks are seeded, so the same day always gives the
+            same plan.
           </p>
         </div>
 
-        <div class="case__block">
+        <div class="case__block" style="margin-bottom:2rem">
           <h4>Built with</h4>
           <ul class="tags">
-            <li class="tag tag--solid">HTML</li>
-            <li class="tag tag--solid">CSS</li>
-            <li class="tag tag--solid">JavaScript</li>
-            <li class="tag">localStorage</li>
-            <li class="tag">No dependencies</li>
+            <li class="tag tag--solid">React</li>
+            <li class="tag tag--solid">TypeScript</li>
+            <li class="tag tag--solid">Vite</li>
+            <li class="tag tag--solid">Tailwind CSS</li>
+            <li class="tag">IndexedDB (Dexie)</li>
+            <li class="tag">Recharts</li>
+            <li class="tag">PWA</li>
+            <li class="tag">Vitest</li>
+            <li class="tag">Open Food Facts API</li>
           </ul>
+        </div>
+
+        <div class="case__block">
+          <h4>Screens</h4>
+          <div class="gallery">
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/12-lean-bulk-today-lg.jpg"
+                    data-caption="Today and Activity — calories eaten against a target built from daily-life burn, logged exercise and the lean-bulk surplus">
+              <img src="assets/img/12-lean-bulk-today-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Today screen with calories, burn and macros, beside the Activity screen with a week of exercise">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/13-lean-bulk-meal-plan-lg.jpg"
+                    data-caption="Meal plan and Eat next — a generated day that lands on the macros, and foods ranked by how well they fill what's left">
+              <img src="assets/img/13-lean-bulk-meal-plan-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Generated meal plan with portions per meal, beside the Eat next list of suggested foods">
+            </button>
+            <button class="gallery__item" type="button"
+                    data-full="assets/img/14-lean-bulk-progress-lg.jpg"
+                    data-caption="Progress — the weight trend, the weekly check-in against 0.5–1% a month, and the burn measured from four weeks of logs">
+              <img src="assets/img/14-lean-bulk-progress-sm.jpg" width="620" height="388"
+                   loading="lazy" decoding="async" alt="Weight trend chart and weekly check-in, beside the measured burn compared with the formula estimate">
+            </button>
+          </div>
         </div>
 
       </div>
@@ -759,6 +802,6 @@
 </div>
 
 <!-- /js/* is cached for a week (netlify.toml): bump ?v= whenever main.js changes -->
-<script src="js/main.js?v=2"></script>
+<script src="js/main.js?v=3"></script>
 </body>
 </html>

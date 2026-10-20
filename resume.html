@@ -94,7 +94,7 @@
     <dl class="r-skills">
       <div class="r-skill">
         <dt>Frontend</dt>
-        <dd>HTML5, CSS3, JavaScript (ES6+), responsive design, Flexbox &amp; Grid, DOM manipulation</dd>
+        <dd>HTML5, CSS3, JavaScript (ES6+), TypeScript, React, Tailwind CSS, responsive design, Flexbox &amp; Grid</dd>
       </div>
       <div class="r-skill">
         <dt>Backend &amp; data</dt>
@@ -128,14 +128,14 @@
 
     <div class="r-entry">
       <div class="r-entry__top">
-        <h3 class="r-entry__title">GWA Calculator &amp; Honours Tracker</h3>
-        <span class="r-entry__when">2026</span>
+        <h3 class="r-entry__title">Lean Bulk Tracker — calorie &amp; macro tracking app</h3>
+        <span class="r-entry__when">October 2026</span>
       </div>
-      <p class="r-entry__sub">Solo — HTML, CSS, vanilla JavaScript (no libraries)</p>
+      <p class="r-entry__sub">Solo — React, TypeScript, Vite, IndexedDB · <a href="https://lean-bulk-tracker-jwg4.netlify.app/">lean-bulk-tracker-jwg4.netlify.app</a></p>
       <ul class="r-bullets">
-        <li>Built a browser tool computing general averages under DepEd rounding rules, reporting honours standing against every criterion, and persisting to <code>localStorage</code>.</li>
-        <li>Implemented a reverse planner giving the minimum grade needed across all remaining grading periods to reach a target average.</li>
-        <li>Solved it by exhaustive search rather than algebra — finals round before averaging, making the result a step function that closed-form solutions get wrong at the boundaries. Verified against 400 randomly generated grade sets.</li>
+        <li>Built an installable, offline phone app that sets a daily calorie and macro target from BMR, logged exercise (MET values) and a lean-bulk surplus, storing everything on the device.</li>
+        <li>Wrote a meal-plan generator that picks from a 222-food database and solves portions by bounded least squares, snapped to real servings and re-balanced across the day.</li>
+        <li>Measured real energy burn from four weeks of food logs and a weight-trend regression with a 95% margin; 59 Vitest unit tests cover the maths.</li>
       </ul>
     </div>
   </section>

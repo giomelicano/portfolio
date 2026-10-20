@@ -161,8 +161,9 @@
 
   /* ------------------------------------------------------------------------
      5. Screenshot lightbox
-     Opens a gallery thumbnail full size. Arrow keys move between shots,
-     Escape closes, and focus returns to the thumbnail that opened it.
+     Opens a gallery thumbnail full size. Arrow keys move between shots of
+     the same project, Escape closes, and focus returns to the thumbnail
+     that opened it.
      ------------------------------------------------------------------------ */
 
   var lightbox = $("#lightbox");
@@ -171,7 +172,7 @@
   var lbClose = $("#lb-close");
   var lbPrev = $("#lb-prev");
   var lbNext = $("#lb-next");
-  var slides = $$(".gallery__item");
+  var slides = [];           /* the opened thumbnail's own gallery */
   var slideIndex = 0;
   var lastFocused = null;
 
@@ -219,8 +220,14 @@
     if (lastFocused) lastFocused.focus();
   }
 
-  slides.forEach(function (slide, index) {
-    slide.addEventListener("click", function () { openLightbox(index, slide); });
+  $$(".gallery").forEach(function (gallery) {
+    var items = $$(".gallery__item", gallery);
+    items.forEach(function (item, index) {
+      item.addEventListener("click", function () {
+        slides = items;
+        openLightbox(index, item);
+      });
+    });
   });
 
   if (lightbox) {

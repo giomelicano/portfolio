@@ -18,8 +18,8 @@ project for `YOUR-` and `TODO` to find them all.
 | 4 | **Confirm the coursework list is really yours** | `resume.html` — see below |
 | 5 | **Check the case-study claims are accurate** | `index.html`, "What I built" |
 
-✅ Profile photo · six DNNHS screenshots · GitHub and LinkedIn links · GWA calculator ·
-project dates · freeCodeCamp certifications · languages · site URL.
+✅ Profile photo · DNNHS screenshots · Lean Bulk Tracker case study · GitHub and LinkedIn
+links · project dates · freeCodeCamp certifications · languages · site URL.
 
 **`resume.html` has no placeholders left at all** — it's ready to print the moment the site
 name matches.
@@ -317,7 +317,7 @@ portfolio/
 │   └── resume.css      # résumé screen + @media print
 ├── js/
 │   └── main.js         # theme, nav, reveal, lightbox, form
-├── gwa/                # project 02 — GWA calculator (see below)
+├── gwa/                # the old project 02, no longer listed (see below)
 ├── assets/img/         # screenshots, photo, og-image.png
 ├── tools/              # image resize script
 ├── netlify.toml        # publish config + security headers
@@ -328,10 +328,27 @@ portfolio/
 
 ---
 
-## Project 02 — the GWA calculator
+## Project 02 — Lean Bulk Tracker
 
-Lives in `gwa/` and deploys with the site, so it's live at `yoursite.netlify.app/gwa/`
-the moment the portfolio is. Nothing extra to set up.
+Replaced the GWA calculator on 20 Oct 2026. The app lives in its own private repo,
+`github.com/giomelicano/lean-bulk-tracker`, and its own Netlify site,
+https://lean-bulk-tracker-jwg4.netlify.app, so the card only links out. There is no Source
+code button while the repo is private.
+
+The four `lean-bulk` images in `assets/img/` (cover + three gallery pairs) show made-up
+sample data: about four weeks of meals, workouts and weigh-ins, loaded into a throwaway
+browser. Each image is phone screenshots at 390×844, 3×, laid out side by side on a
+1600×1000 canvas. To redo them, capture new phone screens, lay them out the same way,
+and keep new filenames: `/assets/*` is cached for a year.
+
+The card's figures come from the app's code. If the app changes, re-check them: the 59
+unit tests (`npx vitest run` in the app's repo), 222 foods (128 Filipino; 111 usable in plans), 2 g/kg protein, 25% fat, +300 kcal, and the 28-day measured burn.
+
+## The old project 02 — the GWA calculator
+
+No longer listed on the page or in the sitemap, but the files still deploy, so
+`yoursite.netlify.app/gwa/` keeps working for anyone who has the link. Delete `gwa/` to take
+it down.
 
 ```
 gwa/
