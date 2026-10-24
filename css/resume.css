@@ -111,13 +111,13 @@ a { color: inherit; }
   align-items: flex-end;
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
-  padding-bottom: 3mm;
+  padding-bottom: 2.4mm;
   border-bottom: 1.5px solid var(--ink);
 }
 
 .r-name {
   margin: 0;
-  font-size: 21pt;
+  font-size: 19.5pt;
   font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -143,24 +143,26 @@ a { color: inherit; }
 
 /* Sections */
 
-.r-section { margin-top: 4.5mm; }
+/* Section rhythm is tuned so the whole resume lands on one page. Adding a
+   section or a few bullets pushes it to two — check the PDF, don't assume. */
+.r-section { margin-top: 3.4mm; }
 
 .r-section > h2 {
-  margin: 0 0 1.8mm;
+  margin: 0 0 1.3mm;
   font-size: 8.5pt;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  padding-bottom: 1.2mm;
+  padding-bottom: 0.9mm;
   border-bottom: 1px solid var(--line);
 }
 
-.r-summary { margin: 0; font-size: 9.6pt; line-height: 1.42; }
+.r-summary { margin: 0; font-size: 9.3pt; line-height: 1.36; }
 
 /* An entry: title row + optional meta + bullets */
 
-.r-entry + .r-entry { margin-top: 3mm; }
+.r-entry + .r-entry { margin-top: 2.2mm; }
 
 .r-entry__top {
   display: flex;
@@ -184,34 +186,38 @@ a { color: inherit; }
 }
 
 .r-entry__sub {
-  margin: 0.4mm 0 1.5mm;
+  margin: 0.3mm 0 1mm;
   font-size: 9.2pt;
   color: var(--ink-muted);
   font-style: italic;
 }
 
 .r-bullets { margin: 0; padding-left: 4.5mm; }
-.r-bullets li { margin-bottom: 0.6mm; font-size: 9.3pt; line-height: 1.4; }
+.r-bullets li { margin-bottom: 0.3mm; font-size: 9.05pt; line-height: 1.32; }
 .r-bullets li::marker { color: var(--ink-faint); }
 
-/* Skills grid */
+/* Skills
 
-.r-skills { display: grid; gap: 1.8mm; }
+   One line per group, label inline with its skills. This used to be a two-column
+   grid; it read well on screen but the PDF's text layer came out column-first,
+   which is how applicant tracking systems read it — the labels in one run, the
+   skill lists in another, the pairing gone. A single flow can't do that. */
+
+.r-skills { display: grid; gap: 1.4mm; }
 
 .r-skill {
-  display: grid;
-  grid-template-columns: 34mm 1fr;
-  gap: 3mm;
-  align-items: baseline;
-}
-.r-skill dt {
-  font-size: 9pt;
-  font-weight: 700;
-}
-.r-skill dd {
   margin: 0;
-  font-size: 9.5pt;
+  font-size: 9.05pt;
+  line-height: 1.34;
   color: var(--ink-muted);
+  /* Hanging indent keeps wrapped skills clear of the label without a second
+     column existing in the text flow. */
+  padding-left: 5mm;
+  text-indent: -5mm;
+}
+.r-skill strong {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 /* A visible marker for text that still needs replacing */
@@ -227,7 +233,7 @@ a { color: inherit; }
 
 @page {
   size: A4;
-  margin: 12mm 13mm;
+  margin: 10mm 13mm;
 }
 
 @media print {
@@ -256,5 +262,5 @@ a { color: inherit; }
 @media (max-width: 640px) {
   .sheet { padding: 8mm 6mm; }
   .r-contact { text-align: left; }
-  .r-skill { grid-template-columns: 1fr; gap: 0.5mm; }
+  .r-skill { padding-left: 0; text-indent: 0; }
 }
